@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "TrustRead",
+  "version": "1.0.0",
+  "description": "Analyze privacy policies and terms of service using OpenAI GPT to identify privacy risks and data collection practices",
+  
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  
+  "host_permissions": [
+    "https://api.openai.com/*"
+  ],
+  
+  "background": {
+    "service_worker": "background.js"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "TrustRead - Analyze Privacy Policy"
+  },
+  
+  "icons": {
+    "128": "icon.svg"
+  },
+  
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
